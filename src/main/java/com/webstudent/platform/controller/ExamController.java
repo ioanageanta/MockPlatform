@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.*;
 public class ExamController {
     @Autowired
     private ExamRepository examRepository;
-//
-//    @PostMapping("/saveDevice")
-//    public void saveDevice(@RequestBody Device device) {
-//        examRepository.save(device);
-//    }
-//
-//    @GetMapping("/getDevice/{id}")
-//    public boolean isDevicePresent(@PathVariable("id") String id) {
-//        return examRepository.findDevice(id) != null;
-//    }
+
+    @GetMapping("/getDate/{subject}")
+    public String getDate(@PathVariable("subject") String subject) {
+        return examRepository.findBySubject(subject);
+    }
 }
