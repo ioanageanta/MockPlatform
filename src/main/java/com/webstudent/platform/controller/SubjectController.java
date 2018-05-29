@@ -12,9 +12,9 @@ public class SubjectController {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    @GetMapping("/getGrade/{email}")
-    public Integer getGrade(@PathVariable("email") String email) {
-        return subjectRepository.findGrade(email);
+    @GetMapping("/getGrade/{email}/{examName}")
+    public Integer getGrade(@PathVariable("email") String email, @PathVariable("examName") String examName) {
+        return subjectRepository.findGrade(email, examName);
     }
 
     @GetMapping("/getRetests")

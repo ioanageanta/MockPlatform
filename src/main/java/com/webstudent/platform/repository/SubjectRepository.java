@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
-    @Query("select s.grade from Subject s where s.user.email=:email")
-    Integer findGrade(@Param("email") String email);
+    @Query("select s.grade from Subject s where s.user.email=:email and s.exam.name=:name")
+    Integer findGrade(@Param("email") String email, @Param("name") String examName);
 
     @Query("select count (s.grade) from Subject s where s.grade<5")
     Integer countRetests();
