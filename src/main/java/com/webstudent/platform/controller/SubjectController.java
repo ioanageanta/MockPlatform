@@ -1,5 +1,6 @@
 package com.webstudent.platform.controller;
 
+import com.webstudent.platform.Utils;
 import com.webstudent.platform.model.Exam;
 import com.webstudent.platform.model.Subject;
 import com.webstudent.platform.model.User;
@@ -57,7 +58,7 @@ public class SubjectController {
         subject.setExam(exam);
         subject.setUser(user);
 
-
+        Utils.sendPost();
         return subjectRepository.save(subject);
     }
 
