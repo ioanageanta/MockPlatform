@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -23,6 +24,11 @@ public class UserController {
     @GetMapping("/getUser/{id}")
     public User getUser(@PathVariable("id") Integer id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping("/get/{email}")
+    public User getUserByEmail(@PathVariable("email") String email) {
+        return userRepository.getUserByEmail(email);
     }
 
     @PostMapping("/save")

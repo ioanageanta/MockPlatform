@@ -1,6 +1,5 @@
 package com.webstudent.platform.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ public class Exam {
     @Column
     private Date date;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "exam-reference")
     @OneToMany(
             mappedBy = "exam",
             cascade = CascadeType.PERSIST,

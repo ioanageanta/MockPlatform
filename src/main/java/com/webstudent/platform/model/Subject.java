@@ -14,7 +14,7 @@ public class Subject {
     @Column
     private Integer grade;
 
-    @JsonBackReference
+    @JsonBackReference(value = "exam-reference")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "exam_id")
     private Exam exam;
