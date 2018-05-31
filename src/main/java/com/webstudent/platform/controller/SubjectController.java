@@ -1,6 +1,8 @@
 package com.webstudent.platform.controller;
 
-import com.webstudent.platform.Utils;
+import com.webstudent.platform.notifications.NotificationData;
+import com.webstudent.platform.notifications.NotificationRequest;
+import com.webstudent.platform.notifications.Utils;
 import com.webstudent.platform.model.Exam;
 import com.webstudent.platform.model.Subject;
 import com.webstudent.platform.model.User;
@@ -58,7 +60,13 @@ public class SubjectController {
         subject.setExam(exam);
         subject.setUser(user);
 
-        Utils.sendPost();
+        NotificationData notificationData = new NotificationData();
+        notificationData.setMessage(subject.getGrade() + " on " + subject.getExam().getName());
+
+        NotificationRequest notificationRequest = new NotificationRequest();
+        notificationRequest.setData(notificationData);
+
+        Utils.sendPost(notificationRequest);
         return subjectRepository.save(subject);
     }
 
