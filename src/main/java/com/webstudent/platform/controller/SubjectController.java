@@ -1,11 +1,11 @@
 package com.webstudent.platform.controller;
 
-import com.webstudent.platform.notifications.NotificationData;
-import com.webstudent.platform.notifications.NotificationRequest;
-import com.webstudent.platform.notifications.Utils;
 import com.webstudent.platform.model.Exam;
 import com.webstudent.platform.model.Subject;
 import com.webstudent.platform.model.User;
+import com.webstudent.platform.notifications.NotificationData;
+import com.webstudent.platform.notifications.NotificationRequest;
+import com.webstudent.platform.notifications.Utils;
 import com.webstudent.platform.repository.ExamRepository;
 import com.webstudent.platform.repository.SubjectRepository;
 import com.webstudent.platform.repository.UserRepository;
@@ -61,70 +61,12 @@ public class SubjectController {
         subject.setUser(user);
 
         NotificationData notificationData = new NotificationData();
-        notificationData.setMessage(subject.getGrade() + " on " + subject.getExam().getName());
+        notificationData.setMessage("You got a " + subject.getGrade() + " on " + subject.getExam().getName());
 
         NotificationRequest notificationRequest = new NotificationRequest();
         notificationRequest.setData(notificationData);
 
         Utils.sendPost(notificationRequest);
         return subjectRepository.save(subject);
-    }
-
-    @PostMapping("/fulfill")
-    public String postFulfillement() {
-        return "{\n" +
-                "\"fulfillmentText\": \"HELLLLOOO\",\n" +
-                "\"fulfillmentMessages\": [\n" +
-                "  {\n" +
-                "    \"card\": {\n" +
-                "      \"title\": \"card title\",\n" +
-                "      \"subtitle\": \"card text\",\n" +
-                "      \"imageUri\": \"https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png\",\n" +
-                "      \"buttons\": [\n" +
-                "        {\n" +
-                "          \"text\": \"button text\",\n" +
-                "          \"postback\": \"https://assistant.google.com/\"\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  }\n" +
-                "],\n" +
-                "\"source\": \"example.com\",\n" +
-                "\"payload\": {\n" +
-                "  \"google\": {\n" +
-                "    \"expectUserResponse\": true,\n" +
-                "    \"richResponse\": {\n" +
-                "      \"items\": [\n" +
-                "        {\n" +
-                "          \"simpleResponse\": {\n" +
-                "            \"textToSpeech\": \"HELLLLOOO this is a simple response\"\n" +
-                "          }\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  },\n" +
-                "  \"facebook\": {\n" +
-                "    \"text\": \"Hello, Facebook!\"\n" +
-                "  },\n" +
-                "  \"slack\": {\n" +
-                "    \"text\": \"This is a text response for Slack.\"\n" +
-                "  }\n" +
-                "},\n" +
-                "\"outputContexts\": [\n" +
-                "  {\n" +
-                "    \"name\": \"projects/${PROJECT_ID}/agent/sessions/${SESSION_ID}/contexts/context name\",\n" +
-                "    \"lifespanCount\": 5,\n" +
-                "    \"parameters\": {\n" +
-                "      \"param\": \"param value\"\n" +
-                "    }\n" +
-                "  }\n" +
-                "],\n" +
-                "\"followupEventInput\": {\n" +
-                "  \"name\": \"event name\",\n" +
-                "  \"languageCode\": \"en-US\",\n" +
-                "  \"parameters\": {\n" +
-                "    \"param\": \"param value\"\n" +
-                "  }\n" +
-                "}";
     }
 }
