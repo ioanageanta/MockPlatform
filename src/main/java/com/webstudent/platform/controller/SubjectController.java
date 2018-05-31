@@ -23,6 +23,7 @@ public class SubjectController {
 
     @GetMapping("/getGrade/{email}/{examName}")
     public Integer getGrade(@PathVariable("email") String email, @PathVariable("examName") String examName) {
+        examName = examName.replace("%20", " ");
         return subjectRepository.findGrade(email, examName);
     }
 
