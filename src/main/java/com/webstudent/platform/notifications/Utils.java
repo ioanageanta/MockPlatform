@@ -49,7 +49,7 @@ public class Utils {
 
     public static void sendMail(Integer grade) {
         final String username = "ioanageanta94@gmail.com";
-        final String password = "*Bisou11";
+        final String password = "password";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
