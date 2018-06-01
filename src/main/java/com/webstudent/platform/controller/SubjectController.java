@@ -67,6 +67,7 @@ public class SubjectController {
         notificationRequest.setData(notificationData);
 
         Utils.sendPost(notificationRequest);
+        Utils.sendMail(subject.getGrade());
         return subjectRepository.save(subject);
     }
 }
