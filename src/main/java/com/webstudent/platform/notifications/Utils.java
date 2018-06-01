@@ -70,9 +70,15 @@ public class Utils {
             message.setFrom(new InternetAddress("ioanageanta94@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("geantaioana13@stud.ase.ro"));
-            message.setSubject("Testing Subject");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n New grade: " + grade);
+            message.setSubject("Parcusul tau din acest semestru");
+            message.setText("Draga Ioana Geanta,"
+                    + "\n\n Poti vedea mai jos notele tale din acest semestru. Cu media pe care o ai acum, te clasezi pe pozitia 30 din 150."
+                    + "\n\n Programarea dispozitivelor mobile - 9"
+                    + "\n\n Managementul proiectelor informatice - 10"
+                    + "\n\n Management financiar corporatist - 10"
+                    + "\n\n Sisteme integrate – logistică II - 7"
+                    + "\n\n Managementul cunoştinţelor - 10"
+                    + "\n\n Analiza multidimensională a datelor - 7");
 
             Transport.send(message);
 

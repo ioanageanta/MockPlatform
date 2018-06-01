@@ -51,7 +51,7 @@ public class SubjectController {
     }
 
     @PostMapping("/saveGrade")
-    public Subject saveGrade(@RequestBody Subject subject) {
+    public void saveGrade(@RequestBody Subject subject) {
         User user = userRepository.findById(subject.getUser().getId()).orElse(null);
         Exam exam = Optional.ofNullable(examRepository.findExamBySubject(subject.getExam().getName())).orElse(subject.getExam());
 
@@ -59,6 +59,8 @@ public class SubjectController {
 
         subject.setExam(exam);
         subject.setUser(user);
+
+        subjectRepository.save(subject);
 
         NotificationData notificationData = new NotificationData();
         notificationData.setMessage("You got a " + subject.getGrade() + " on " + subject.getExam().getName());
@@ -68,6 +70,5 @@ public class SubjectController {
 
         Utils.sendPost(notificationRequest);
         Utils.sendMail(subject.getGrade());
-        return subjectRepository.save(subject);
     }
 }
